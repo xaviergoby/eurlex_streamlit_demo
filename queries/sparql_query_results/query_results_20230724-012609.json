@@ -1,0 +1,19 @@
+{
+    "head": {
+        "link": [],
+        "vars": [
+            "cellarURIs",
+            "lang",
+            "mtypes",
+            "workTypes",
+            "workDates",
+            "subjects",
+            "subject_ids"
+        ]
+    },
+    "results": {
+        "distinct": false,
+        "ordered": true,
+        "bindings": []
+    }
+}

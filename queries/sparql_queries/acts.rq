@@ -1,0 +1,9 @@
+prefix cdm: <http://publications.europa.eu/ontology/cdm#>
+select ?act,  ?date_entry_into_force, GROUP_CONCAT (?actID,',') as ?actIds
+where {
+?act cdm:resource_legal_in-force "true"^^<http://www.w3.org/2001/XMLSchema#boolean>.
+?act cdm:resource_legal_date_entry-into-force ?date_entry_into_force.
+?act cdm:work_id_document ?actID
+FILTER( ?date_entry_into_force>= "2022-01-01"^^xsd:date  && ?date_entry_into_force< "2023-01-01"^^xsd:date)
+}
+order by ?date_entry_into_force

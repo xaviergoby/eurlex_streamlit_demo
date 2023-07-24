@@ -1,0 +1,81 @@
+PREFIX cdm:<http://publications.europa.eu/ontology/cdm#>
+PREFIX skos:<http://www.w3.org/2004/02/skos/core#>
+PREFIX dc:<http://purl.org/dc/elements/1.1/>
+PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>
+PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl:<http://www.w3.org/2002/07/owl#> 
+
+SELECT 
+DISTINCT
+(GROUP_CONCAT(distinct ?work;separator="|") as ?cellarURIs)
+(GROUP_CONCAT(distinct ?langIdentifier;separator="|") as ?lang)
+(GROUP_CONCAT(distinct ?mtype;separator="|") as ?mtypes)
+(GROUP_CONCAT(distinct ?resType;separator="|") as ?workTypes)
+(GROUP_CONCAT(distinct ?subjectLabel;separator="|") as ?subjects)
+(GROUP_CONCAT(distinct ?subject;separator="|") as ?subject_ids)
+
+WHERE 
+{
+	graph ?g {
+		#?work rdf:type cdm:legislation_secondary .
+		?work rdf:type ?resType .
+		FILTER(  ?resType = cdm:act_preparatory || ?resType = cdm:decision_delegated || ?resType = cdm:decision_implementing || ?resType = cdm:decision || ?resType = cdm:directive || ?resType = cdm:guideline_ecb || ?resType = cdm:regulation_delegated || ?resType = cdm:regulation_implementing || ?resType = cdm:regulation )
+				?work cdm:work_is_about_concept_eurovoc ?subject . 
+	graph ?ga { 
+		?subject skos:prefLabel ?subjectLabel .
+		FILTER (lang(?subjectLabel)="en") }
+		FILTER( ?subject = <http://eurovoc.europa.eu/1016>  #	international finance
+				|| ?subject = <http://eurovoc.europa.eu/1918>  #	clearing agreement
+				|| ?subject = <http://eurovoc.europa.eu/2219>  #	international payment
+				|| ?subject = <http://eurovoc.europa.eu/300>   #	international credit
+				|| ?subject = <http://eurovoc.europa.eu/3186>  #	financial agreement
+				|| ?subject = <http://eurovoc.europa.eu/587>   #	special drawing rights
+				|| ?subject = <http://eurovoc.europa.eu/4603>  #	European Payments Union
+				|| ?subject = <http://eurovoc.europa.eu/6151>  #	euro area
+				|| ?subject = <http://eurovoc.europa.eu/6334>  #	Euribor
+				|| ?subject = <http://eurovoc.europa.eu/1676>  #	money-market liquidity
+				|| ?subject = <http://eurovoc.europa.eu/1809>  #	money market
+				|| ?subject = <http://eurovoc.europa.eu/1825>  #	money supply
+				|| ?subject = <http://eurovoc.europa.eu/1969>  #	money
+				|| ?subject = <http://eurovoc.europa.eu/1972>  #	paper money
+				|| ?subject = <http://eurovoc.europa.eu/1974>  #	national currency
+				|| ?subject = <http://eurovoc.europa.eu/1975>  #	deposit money
+				|| ?subject = <http://eurovoc.europa.eu/2365>  #	petrodollar
+				|| ?subject = <http://eurovoc.europa.eu/3220>  #	private-sector liquidity
+				|| ?subject = <http://eurovoc.europa.eu/4463>  #	negotiable instrument
+				|| ?subject = <http://eurovoc.europa.eu/4731>  #	credit transfer
+				|| ?subject = <http://eurovoc.europa.eu/5963>  #	cheque
+				|| ?subject = <http://eurovoc.europa.eu/903>   #	Eurobond
+				|| ?subject = <http://eurovoc.europa.eu/904>   #	Euromarket
+				|| ?subject = <http://eurovoc.europa.eu/1799>  #	foreign exchange market
+				|| ?subject = <http://eurovoc.europa.eu/2240>  #	exchange parity
+				|| ?subject = <http://eurovoc.europa.eu/433>   #	foreign currency
+				|| ?subject = <http://eurovoc.europa.eu/4390>  #	exchange rate
+				|| ?subject = <http://eurovoc.europa.eu/4393>  #	floating rate
+				|| ?subject = <http://eurovoc.europa.eu/6335>  #	conversion rate
+				|| ?subject = <http://eurovoc.europa.eu/178>   #	liquidity control
+				|| ?subject = <http://eurovoc.europa.eu/2642>  #	purchase price
+				|| ?subject = <http://eurovoc.europa.eu/2648>  #	offer price
+				|| ?subject = <http://eurovoc.europa.eu/2652>  #	retail price
+				|| ?subject = <http://eurovoc.europa.eu/2653>  #	wholesale price
+				|| ?subject = <http://eurovoc.europa.eu/2656>  #	market prices
+				|| ?subject = <http://eurovoc.europa.eu/2664>  #	selling price
+				|| ?subject = <http://eurovoc.europa.eu/2668>  #	world market price
+				|| ?subject = <http://eurovoc.europa.eu/3272> ) . #	price of agricultural produce
+	}
+	graph ?ge { 
+		?exp cdm:expression_belongs_to_work ?work .
+		?exp cdm:expression_uses_language ?lg . 
+		graph ?lgc { ?lg dc:identifier ?langIdentifier .}
+		FILTER(  str( ?langIdentifier)="ENG")
+	}
+	graph ?gm {
+		?manif cdm:manifestation_manifests_expression ?exp .
+		{?manif cdm:manifestation_type ?mtype .}
+		FILTER(  str( ?mtype)="html"|| str( ?mtype)="html_simpl"|| str( ?mtype)="txt"|| str( ?mtype)="xhtml"|| str( ?mtype)="xhtml_simpl"|| str( ?mtype)="xml")
+	}
+}
+GROUP BY ?work
+LIMIT 100000
+OFFSET 1000

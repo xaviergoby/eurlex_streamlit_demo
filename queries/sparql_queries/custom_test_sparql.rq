@@ -1,0 +1,8 @@
+PREFIX cdm: <http://publications.europa.eu/ontology/cdm#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT ?oj
+concat('\thttps://publications.europa.eu/publication-detail/-/publication/',replace(xsd:string(?oj), '.+/', '')) as ?portal_link_to_work
+WHERE {
+                ?oj cdm:official-journal_year '2022'^^xsd:gYear .
+}
+ORDER BY ?oj

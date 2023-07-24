@@ -1,0 +1,361 @@
+{
+    "head": {
+        "link": [],
+        "vars": [
+            "cellarURIs",
+            "workTitles",
+            "lang",
+            "mtypes",
+            "workTypes",
+            "workDates",
+            "subjects",
+            "subject_ids"
+        ]
+    },
+    "results": {
+        "distinct": false,
+        "ordered": true,
+        "bindings": [
+            {
+                "cellarURIs": {
+                    "type": "literal",
+                    "value": "http://publications.europa.eu/resource/cellar/52c4ff6c-fe42-11ea-b44f-01aa75ed71a1"
+                },
+                "workTitles": {
+                    "type": "literal",
+                    "value": "COMMISSION STAFF WORKING DOCUMENT EXECUTIVE SUMMARY OF THE IMPACT ASSESSMENT Accompanying the document Proposal for a Directive of the European Parliament and of the Council amending Directives 2006/43/EC, 2009/65/EC, 2009/138/EU, 2011/61/EU, EU/2013/36, 2014/65/EU, (EU) 2015/2366 and EU/2016/2341"
+                },
+                "lang": {
+                    "type": "literal",
+                    "value": "ENG"
+                },
+                "mtypes": {
+                    "type": "literal",
+                    "value": "xhtml"
+                },
+                "workTypes": {
+                    "type": "literal",
+                    "value": "http://publications.europa.eu/ontology/cdm#act_preparatory"
+                },
+                "workDates": {
+                    "type": "literal",
+                    "value": "2020-09-24"
+                },
+                "subjects": {
+                    "type": "literal",
+                    "value": "financial institution|financial legislation|financial services"
+                },
+                "subject_ids": {
+                    "type": "literal",
+                    "value": "http://eurovoc.europa.eu/1452|http://eurovoc.europa.eu/560|http://eurovoc.europa.eu/8469"
+                }
+            },
+            {
+                "cellarURIs": {
+                    "type": "literal",
+                    "value": "http://publications.europa.eu/resource/cellar/1d7518cd-fe55-11ea-b44f-01aa75ed71a1"
+                },
+                "workTitles": {
+                    "type": "literal",
+                    "value": "COMMISSION STAFF WORKING DOCUMENT EXECUTIVE SUMMARY OF THE IMPACT ASSESSMENT Accompanying the document Proposal for a Regulation of the European Parliament and of the Council on Markets in Crypto-assets and amending Directive (EU) 2019/1937"
+                },
+                "lang": {
+                    "type": "literal",
+                    "value": "ENG"
+                },
+                "mtypes": {
+                    "type": "literal",
+                    "value": "xhtml"
+                },
+                "workTypes": {
+                    "type": "literal",
+                    "value": "http://publications.europa.eu/ontology/cdm#act_preparatory"
+                },
+                "workDates": {
+                    "type": "literal",
+                    "value": "2020-09-24"
+                },
+                "subjects": {
+                    "type": "literal",
+                    "value": "financial legislation"
+                },
+                "subject_ids": {
+                    "type": "literal",
+                    "value": "http://eurovoc.europa.eu/560"
+                }
+            },
+            {
+                "cellarURIs": {
+                    "type": "literal",
+                    "value": "http://publications.europa.eu/resource/cellar/6ef56da4-fe48-11ea-b44f-01aa75ed71a1"
+                },
+                "workTitles": {
+                    "type": "literal",
+                    "value": "COMMISSION STAFF WORKING DOCUMENT EXECUTIVE SUMMARY OF THE IMPACT ASSESSMENT Accompanying the document Proposal for a Regulation of the European Parliament and of the Council on digital operational resilience for the financial sector and amending Regulations (EC) No 1060/2009, (EU) No 648/2012, (EU) No 600/2014 and (EU) No 909/2014"
+                },
+                "lang": {
+                    "type": "literal",
+                    "value": "ENG"
+                },
+                "mtypes": {
+                    "type": "literal",
+                    "value": "xhtml"
+                },
+                "workTypes": {
+                    "type": "literal",
+                    "value": "http://publications.europa.eu/ontology/cdm#act_preparatory"
+                },
+                "workDates": {
+                    "type": "literal",
+                    "value": "2020-09-24"
+                },
+                "subjects": {
+                    "type": "literal",
+                    "value": "financial services"
+                },
+                "subject_ids": {
+                    "type": "literal",
+                    "value": "http://eurovoc.europa.eu/8469"
+                }
+            },
+            {
+                "cellarURIs": {
+                    "type": "literal",
+                    "value": "http://publications.europa.eu/resource/cellar/58e03312-fe48-11ea-b44f-01aa75ed71a1"
+                },
+                "workTitles": {
+                    "type": "literal",
+                    "value": "Proposal for a REGULATION OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL on digital operational resilience for the financial sector and amending Regulations (EC) No 1060/2009, (EU) No 648/2012, (EU) No 600/2014 and (EU) No 909/2014"
+                },
+                "lang": {
+                    "type": "literal",
+                    "value": "ENG"
+                },
+                "mtypes": {
+                    "type": "literal",
+                    "value": "xhtml"
+                },
+                "workTypes": {
+                    "type": "literal",
+                    "value": "http://publications.europa.eu/ontology/cdm#act_preparatory"
+                },
+                "workDates": {
+                    "type": "literal",
+                    "value": "2020-09-24"
+                },
+                "subjects": {
+                    "type": "literal",
+                    "value": "financial services"
+                },
+                "subject_ids": {
+                    "type": "literal",
+                    "value": "http://eurovoc.europa.eu/8469"
+                }
+            },
+            {
+                "cellarURIs": {
+                    "type": "literal",
+                    "value": "http://publications.europa.eu/resource/cellar/59a6c70d-fe42-11ea-b44f-01aa75ed71a1"
+                },
+                "workTitles": {
+                    "type": "literal",
+                    "value": "COMMISSION STAFF WORKING DOCUMENT IMPACT ASSESSMENT REPORT Accompanying the document Proposal for a Directive of the European Parliament and of the Council amending Directives 2006/43/EC, 2009/65/EC, 2009/138/EU, 2011/61/EU, EU/2013/36, 2014/65/EU, (EU) 2015/2366 and EU/2016/2341"
+                },
+                "lang": {
+                    "type": "literal",
+                    "value": "ENG"
+                },
+                "mtypes": {
+                    "type": "literal",
+                    "value": "xhtml"
+                },
+                "workTypes": {
+                    "type": "literal",
+                    "value": "http://publications.europa.eu/ontology/cdm#act_preparatory"
+                },
+                "workDates": {
+                    "type": "literal",
+                    "value": "2020-09-24"
+                },
+                "subjects": {
+                    "type": "literal",
+                    "value": "financial institution|financial legislation|financial services"
+                },
+                "subject_ids": {
+                    "type": "literal",
+                    "value": "http://eurovoc.europa.eu/1452|http://eurovoc.europa.eu/560|http://eurovoc.europa.eu/8469"
+                }
+            },
+            {
+                "cellarURIs": {
+                    "type": "literal",
+                    "value": "http://publications.europa.eu/resource/cellar/b99a8bf3-fe55-11ea-b44f-01aa75ed71a1"
+                },
+                "workTitles": {
+                    "type": "literal",
+                    "value": "COMMISSION STAFF WORKING DOCUMENT IMPACT ASSESSMENT Accompanying the document Proposal for a Regulation of the European Parliament and of the Council on a pilot regime for market infrastructures based on distributed ledger technology"
+                },
+                "lang": {
+                    "type": "literal",
+                    "value": "ENG"
+                },
+                "mtypes": {
+                    "type": "literal",
+                    "value": "xhtml"
+                },
+                "workTypes": {
+                    "type": "literal",
+                    "value": "http://publications.europa.eu/ontology/cdm#act_preparatory"
+                },
+                "workDates": {
+                    "type": "literal",
+                    "value": "2020-09-24"
+                },
+                "subjects": {
+                    "type": "literal",
+                    "value": "financial instrument|financial legislation|financial services|investment protection"
+                },
+                "subject_ids": {
+                    "type": "literal",
+                    "value": "http://eurovoc.europa.eu/1132|http://eurovoc.europa.eu/1459|http://eurovoc.europa.eu/560|http://eurovoc.europa.eu/8469"
+                }
+            },
+            {
+                "cellarURIs": {
+                    "type": "literal",
+                    "value": "http://publications.europa.eu/resource/cellar/c3e96998-fe3f-11ea-b44f-01aa75ed71a1"
+                },
+                "workTitles": {
+                    "type": "literal",
+                    "value": "COMMUNICATION FROM THE COMMISSION TO THE EUROPEAN PARLIAMENT, THE COUNCIL, THE EUROPEAN ECONOMIC AND SOCIAL COMMITTEE AND THE COMMITTEE OF THE REGIONS on a Digital Finance Strategy for the EU"
+                },
+                "lang": {
+                    "type": "literal",
+                    "value": "ENG"
+                },
+                "mtypes": {
+                    "type": "literal",
+                    "value": "xhtml"
+                },
+                "workTypes": {
+                    "type": "literal",
+                    "value": "http://publications.europa.eu/ontology/cdm#act_preparatory"
+                },
+                "workDates": {
+                    "type": "literal",
+                    "value": "2020-09-24"
+                },
+                "subjects": {
+                    "type": "literal",
+                    "value": "electronic banking|financial services"
+                },
+                "subject_ids": {
+                    "type": "literal",
+                    "value": "http://eurovoc.europa.eu/3248|http://eurovoc.europa.eu/8469"
+                }
+            },
+            {
+                "cellarURIs": {
+                    "type": "literal",
+                    "value": "http://publications.europa.eu/resource/cellar/28e716ee-fe55-11ea-b44f-01aa75ed71a1"
+                },
+                "workTitles": {
+                    "type": "literal",
+                    "value": "COMMISSION STAFF WORKING DOCUMENT IMPACT ASSESSMENT Accompanying the document Proposal for a Regulation of the European Parliament and of the Council on Markets in Crypto-assets and amending Directive (EU) 2019/1937"
+                },
+                "lang": {
+                    "type": "literal",
+                    "value": "ENG"
+                },
+                "mtypes": {
+                    "type": "literal",
+                    "value": "xhtml"
+                },
+                "workTypes": {
+                    "type": "literal",
+                    "value": "http://publications.europa.eu/ontology/cdm#act_preparatory"
+                },
+                "workDates": {
+                    "type": "literal",
+                    "value": "2020-09-24"
+                },
+                "subjects": {
+                    "type": "literal",
+                    "value": "financial legislation"
+                },
+                "subject_ids": {
+                    "type": "literal",
+                    "value": "http://eurovoc.europa.eu/560"
+                }
+            },
+            {
+                "cellarURIs": {
+                    "type": "literal",
+                    "value": "http://publications.europa.eu/resource/cellar/9789ff00-fe55-11ea-b44f-01aa75ed71a1"
+                },
+                "workTitles": {
+                    "type": "literal",
+                    "value": "Proposal for a REGULATION OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL on a pilot regime for market infrastructures based on distributed ledger technology"
+                },
+                "lang": {
+                    "type": "literal",
+                    "value": "ENG"
+                },
+                "mtypes": {
+                    "type": "literal",
+                    "value": "xhtml"
+                },
+                "workTypes": {
+                    "type": "literal",
+                    "value": "http://publications.europa.eu/ontology/cdm#act_preparatory"
+                },
+                "workDates": {
+                    "type": "literal",
+                    "value": "2020-09-24"
+                },
+                "subjects": {
+                    "type": "literal",
+                    "value": "financial instrument|financial legislation|financial services|investment protection"
+                },
+                "subject_ids": {
+                    "type": "literal",
+                    "value": "http://eurovoc.europa.eu/1132|http://eurovoc.europa.eu/1459|http://eurovoc.europa.eu/560|http://eurovoc.europa.eu/8469"
+                }
+            },
+            {
+                "cellarURIs": {
+                    "type": "literal",
+                    "value": "http://publications.europa.eu/resource/cellar/4866bb3a-fe42-11ea-b44f-01aa75ed71a1"
+                },
+                "workTitles": {
+                    "type": "literal",
+                    "value": "Proposal for a DIRECTIVE OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL amending Directives 2006/43/EC, 2009/65/EC, 2009/138/EU, 2011/61/EU, EU/2013/36, 2014/65/EU, (EU) 2015/2366 and EU/2016/2341"
+                },
+                "lang": {
+                    "type": "literal",
+                    "value": "ENG"
+                },
+                "mtypes": {
+                    "type": "literal",
+                    "value": "xhtml"
+                },
+                "workTypes": {
+                    "type": "literal",
+                    "value": "http://publications.europa.eu/ontology/cdm#act_preparatory"
+                },
+                "workDates": {
+                    "type": "literal",
+                    "value": "2020-09-24"
+                },
+                "subjects": {
+                    "type": "literal",
+                    "value": "financial institution|financial legislation|financial services"
+                },
+                "subject_ids": {
+                    "type": "literal",
+                    "value": "http://eurovoc.europa.eu/1452|http://eurovoc.europa.eu/560|http://eurovoc.europa.eu/8469"
+                }
+            }
+        ]
+    }
+}
