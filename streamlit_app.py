@@ -51,29 +51,83 @@ updated_query = ''
 #                     }
 #         </style>
 #         """, unsafe_allow_html=True)
+
+# h1 {
+#     font-family: "Source Sans Pro", sans-serif;
+#     font-weight: 700;
+#     color: rgb(250, 250, 250);
+#     padding: 2rem 0px 1rem;
+#     margin: 0px;
+#     line-height: 1.2;
+# }
+
 st.markdown("""
   <style>
-    .css-6qob1r e1akgbir3 {
-      margin-top: -150px;
+    block-container css-1y4p8pa e1g8pov64 {
+      padding: 2rem 1px 1.5rem;
+    }
+    .css-1y4p8pa {
+    width: 100%;
+    padding: 1.5rem 1rem 10rem;
+    max-width: 46rem;
+}
+h1 {
+    font-size: calc(1.8rem + 2vw);
+}
+  </style>
+""", unsafe_allow_html=True)
+st.markdown("""
+  <style>
+    .css-1544g2n {
+      padding: 2rem 1rem 1.5rem;
     }
   </style>
 """, unsafe_allow_html=True)
 
+# .css-1544g2n {
+#     padding: 6rem 1rem 1.5rem;
+# }
+
 # sidebar_info_project_name = st.sidebar.markdown("<h1 style='text-align: center; color: white;'><b><font size='+20'><em>COEUS</em></font></b></h1>", unsafe_allow_html=True)
-sidebar_info_project_name = st.sidebar.markdown("<h1 style='text-align: center; color: white; padding-top: -50px;'><b><font size='+20'><em>COEUS</em></font></b></h1>", unsafe_allow_html=True)
+sidebar_info_project_name = st.sidebar.markdown("<h2 style='text-align: center; color: white; padding-top: -50px;'><b><font size='+20'><em>COEUS</em></font></b></h2>", unsafe_allow_html=True)
 # st.sidebar.markdown("<h1><b><font size='+20'><em>COEUS</em></font></b></h1>", unsafe_allow_html=True)
+
+proj_name_caption_wiki_url = "https://en.wikipedia.org/wiki/Coeus"
+proj_name_caption_wiki_label = "Coeus - Wikipedia"
+sidebar_info_proj_name_caption = st.sidebar.markdown("<h5 style='text-align: center; color: white;'>In Greek mythology, "
+													 "Coeus (Ancient Greek: Κοῖος), Koios, meaning 'query, questioning' or "
+													 "'intelligence', also called Polus, was one of the Titans, one of the "
+													 f"three groups of children born to Uranus (Sky) and Gaia (Earth).<a href='{proj_name_caption_wiki_url}' id='my-link'>{proj_name_caption_wiki_label}</a></h5>", unsafe_allow_html=True)
+
 st.sidebar.divider()
-sidebar_info_project_title = st.sidebar.markdown('<h2 style="text-align: center; color: white;"><font size="+6">EurLex Financial\n'
-												 'Domain Publications\nQuerying & Retrieval\n<em>"Streamlitnined"</em></font></h2>', unsafe_allow_html=True)
-st.sidebar.divider()
-sidebar_info_gen_desc_header = st.sidebar.markdown("<h5 style='color: white;'>General Description</h5>", unsafe_allow_html=True)
+sidebar_info_project_title = st.sidebar.markdown('<h4 style="text-align: center; color: white;"><font size="+6">EurLex Financial\n'
+												 'Domain Publications\nQuerying & Retrieval\n<em>"Streamlitnined"</em></font></h4>', unsafe_allow_html=True)
+
+st.markdown("""
+  <style>
+h4 {
+    font-family: "Source Sans Pro", sans-serif;
+    font-weight: 600;
+    color: rgb(250, 250, 250);
+    padding: 0.25rem 0px 0.5rem;
+    margin: 0px;
+    line-height: 1.2;
+}
+  </style>
+""", unsafe_allow_html=True)
+# st.sidebar.divider()
+
+sidebar_info_gen_desc_header = st.sidebar.markdown("<h2 style='color: white;'>General Description</h2>", unsafe_allow_html=True)
 
 with open("eurovoc_codes_and_labels.json", 'r') as eurovoc_mapping_json:
     eurovocs_mapping = eurovoc_mapping_json.read()
 
+publications_of_the_eu_office_url = "https://op.europa.eu/en/home"
+eur_lex_url = "https://eur-lex.europa.eu/homepage.html"
+eurovocs_url = "https://op.europa.eu/en/web/eu-vocabularies"
 sidebar_info_gen_desc = st.sidebar.markdown("<p>This applications purpose is to facilitate the querying & acquisition of financial related"
-											"official publications from the Publications Office of the EU.<br>See the list of financial subjects below"
-											"(i.e. EuroVoc's) defining the financial domain/corpus of knowledge available via the EUR-Lex platform.</p>", unsafe_allow_html=True)
+											f"official publications from the <a href='{publications_of_the_eu_office_url}' id='my-link'>Publications Office of the EU</a>.<br>See the list of financial subjects below"
+											f"(i.e. <a href='{eurovocs_url}' id='my-link'>EuroVoc's</a>) defining the financial domain/corpus of knowledge available via the <a href='{eur_lex_url}' id='my-link'>EUR-Lex</a> platform.</p>", unsafe_allow_html=True)
 
 # parse file
 fin_domain_subjects_eurovoc_labels = list(json.loads(eurovocs_mapping).values())
@@ -93,6 +147,10 @@ fin_domain_subjects_eurovoc_labels_formatted = f"""
 # 														  unsafe_allow_html=True)
 sidebar_info_eurlex_subjects_toggle = st.sidebar.markdown(f"<details> <summary>EuroVocs:</summary>{fin_domain_subjects_eurovoc_labels_formatted}</details>",
 														  unsafe_allow_html=True)
+# st.sidebar.divider()
+sidebar_info_usage_guide_header = st.sidebar.markdown("<h2 style='color: white;'>Usage Guide</h2>", unsafe_allow_html=True)
+
+sidebar_info_usage_guide = st.sidebar.markdown("<p>Intuitive enough I hope</p>", unsafe_allow_html=True)
 
 st.markdown("<h1 style='text-align: center; color: white;'>EurLex Financial Domain Publications Retrieval Demo</h1>", unsafe_allow_html=True)
 # st.header("SPARQL Query Results")
