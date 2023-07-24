@@ -1,3 +1,4 @@
+import json
 import time
 import data_src
 # from data_src import DataSrc
@@ -38,6 +39,61 @@ updated_query = ''
 # language_opt2 = st.sidebar.date_input("Please enter earliest date of publications (YYYY-MM-DD)").strftime('%Y-%m-%d')
 # subject_filer = st.sidebar.selectbox("Please enter earliest date of publications (YYYY-MM-DD)").strftime('%Y-%m-%d')
 
+# sidebar_info = st.sidebar.markdown("<h2 style='color: white;'>Sidebar Info</h2>", unsafe_allow_html=True)
+
+# st.sidebar.markdown("""
+#         <style>
+#         .block-container {
+#                     padding-top: 1rem;
+#                     padding-bottom: 0rem;
+#                     padding-left: 5rem;
+#                     padding-right: 5rem;
+#                     }
+#         </style>
+#         """, unsafe_allow_html=True)
+st.markdown("""
+  <style>
+    .css-6qob1r e1akgbir3 {
+      margin-top: -150px;
+    }
+  </style>
+""", unsafe_allow_html=True)
+
+# sidebar_info_project_name = st.sidebar.markdown("<h1 style='text-align: center; color: white;'><b><font size='+20'><em>COEUS</em></font></b></h1>", unsafe_allow_html=True)
+sidebar_info_project_name = st.sidebar.markdown("<h1 style='text-align: center; color: white; padding-top: -50px;'><b><font size='+20'><em>COEUS</em></font></b></h1>", unsafe_allow_html=True)
+# st.sidebar.markdown("<h1><b><font size='+20'><em>COEUS</em></font></b></h1>", unsafe_allow_html=True)
+st.sidebar.divider()
+sidebar_info_project_title = st.sidebar.markdown('<h2 style="text-align: center; color: white;"><font size="+6">EurLex Financial\n'
+												 'Domain Publications\nQuerying & Retrieval\n<em>"Streamlitnined"</em></font></h2>', unsafe_allow_html=True)
+st.sidebar.divider()
+sidebar_info_gen_desc_header = st.sidebar.markdown("<h5 style='color: white;'>General Description</h5>", unsafe_allow_html=True)
+
+with open("eurovoc_codes_and_labels.json", 'r') as eurovoc_mapping_json:
+    eurovocs_mapping = eurovoc_mapping_json.read()
+
+sidebar_info_gen_desc = st.sidebar.markdown("<p>This applications purpose is to facilitate the querying & acquisition of financial related"
+											"official publications from the Publications Office of the EU.<br>See the list of financial subjects below"
+											"(i.e. EuroVoc's) defining the financial domain/corpus of knowledge available via the EUR-Lex platform.</p>", unsafe_allow_html=True)
+
+# parse file
+fin_domain_subjects_eurovoc_labels = list(json.loads(eurovocs_mapping).values())
+fin_domain_subjects_eurovoc_labels_formatted = "\n"
+for eurovoc_label in fin_domain_subjects_eurovoc_labels:
+	fin_domain_subjects_eurovoc_labels_formatted += f"- {eurovoc_label}\n"
+fin_domain_subjects_eurovoc_labels_formatted = f"""
+{fin_domain_subjects_eurovoc_labels_formatted}
+"""
+# st.markdown(f"""
+# 	EuroVocs:
+# 	{fin_domain_subjects_eurovoc_labels_formatted}
+# 	""")
+# sidebar_info_eurlex_subjects_toggle = st.sidebar.markdown("<details> <summary>Sidebar Info</summary> BODY CONTENT </details> ", unsafe_allow_html=True)
+# sidebar_info_eurlex_subjects_toggle = st.sidebar.markdown(f"<details> <summary>Sidebar Info</summary>{fin_domain_subjects_eurovoc_labels_formatted}</details> ", unsafe_allow_html=True)
+# sidebar_info_eurlex_subjects_toggle = st.sidebar.markdown(f"""<details> <summary>EuroVocs:</summary>{fin_domain_subjects_eurovoc_labels_formatted}</details>""",
+# 														  unsafe_allow_html=True)
+sidebar_info_eurlex_subjects_toggle = st.sidebar.markdown(f"<details> <summary>EuroVocs:</summary>{fin_domain_subjects_eurovoc_labels_formatted}</details>",
+														  unsafe_allow_html=True)
+
 st.markdown("<h1 style='text-align: center; color: white;'>EurLex Financial Domain Publications Retrieval Demo</h1>", unsafe_allow_html=True)
 # st.header("SPARQL Query Results")
 # st.columns(3)[1].header("SPARQL Query Results")
@@ -56,7 +112,7 @@ input_row2_col1, input_row2_col2 = st.columns(2)
 
 # init_pub_date = st.text_input("Please enter a starting date for publications desired (YYYY-MM-DD)")
 # init_pub_date = st.date_input("Please enter a starting date for publications desired (YYYY-MM-DD)").strftime('%Y-%m-%d')
-init_pub_date = input_row1_col1.date_input("Please enter earliest date of publications (YYYY-MM-DD)").strftime('%Y-%m-%d')
+init_pub_date = input_row1_col1.date_input("Earliest date of publications (YYYY-MM-DD)").strftime('%Y-%m-%d')
 # print(f"init_pub_date: {init_pub_date}")
 
 # st.write(f"init_pub_date: {init_pub_date}")
@@ -91,12 +147,13 @@ language_opt = input_row2_col2.selectbox("Publications language", options=["EN",
 # st.divider()
 
 # st.markdown("<h2 style='text-align: center; color: white;'>SPARQL Query Results</h2>", unsafe_allow_html=True)
+st.divider()
 st.markdown("<h2 style='color: white;'>SPARQL Query Results</h2>", unsafe_allow_html=True)
 
 # st.write("#")
 # st.write("#")
 
-st.divider()
+# st.divider()
 
 
 
@@ -117,6 +174,8 @@ for i, res in enumerate(results["results"]["bindings"], start=1):
 	doc_authors = res["authors"]["value"]
 	# doc_mtypes = res["mtypes"]["value"]
 	doc_mtypes = res["mtype"]["value"]
+	# st.write(f"**Document # {i}:**")
+	st.markdown(f"<h3 style='color: white;'><b>Document # {i}</b></h3>", unsafe_allow_html=True)
 	# doc_ids = res["workIds"]["value"]
 	# st.write(f"**Document # {i}:**")
 	# st.write(f"Date: {doc_date}")
@@ -133,8 +192,9 @@ for i, res in enumerate(results["results"]["bindings"], start=1):
 		col1, col2, col3 = st.columns((1,1,2))
 	else:
 		col1, col2, col3 = st.columns(3)
-	col1.write(f"**Document # {i}:**")
-	col2.write(f"Date: {doc_date}")
+	# col1.write(f"**Document # {i}:**")
+	col1.write(f"Date: {doc_date}")
+	col2.write(f"Format: {doc_mtypes}")
 	col3.write(f"CELEX: {doc_celex_id}")
 	st.write(f"Title:\n<a href='{doc_url}' id='my-link'>{doc_title}</a>", unsafe_allow_html=True)
 	# st.write(f"Title:\n<h3 style='color: white;' href='{doc_url}' id='my-link'>{doc_title}</h3>", unsafe_allow_html=True)
