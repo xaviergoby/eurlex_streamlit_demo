@@ -314,7 +314,7 @@ WHERE
 	graph ?gm {
 		?manif cdm:manifestation_manifests_expression ?exp .
 		{?manif cdm:manifestation_type ?mtype .}
-		FILTER(  str( ?mtype)="html"|| str( ?mtype)="html_simpl"|| str( ?mtype)="txt"|| str( ?mtype)="xhtml"|| str( ?mtype)="xhtml_simpl"|| str( ?mtype)="xml")
+		FILTER(  str( ?mtype)="html"|| str( ?mtype)="html_simpl"|| str( ?mtype)="txt"|| str( ?mtype)="xhtml"|| str( ?mtype)="xhtml_simpl")
 	}
 }
 ORDER BY DESC(?date)

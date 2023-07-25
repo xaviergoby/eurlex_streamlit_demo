@@ -44,9 +44,6 @@ def print_list_to_file(outfile_name, list):
 	with open(outfile_name, 'w') as outfile:
 		for elt in list[:-1]:
 			outfile.write('{name}{newline}'.format(name=elt, newline='\n'))
-			# outfile.write("%s\n" % file_name)
-		
-		# Last line not followed by newline
 		for file_name in list[-1]:
 			outfile.write(file_name)
 
@@ -74,13 +71,10 @@ def eurovoc_xmlrdf_response_2_label(xmlrdf_response):
 	# lang_label =
 	for label in labels:
 		if "@xml:lang" in list(label.keys()) and label["@xml:lang"] == "en":
-			# return True
-			# return label["#text"]
 			return re.sub('[^a-zA-Z]+ ', '', label["#text"])
 
 
 def convert_eurovoc_code_2_label_via_get_req(eurovoc_code):
-	# label_id = eurovoc_urls[0].split("/")[-1]
 	headers = {"charset": "utf-8", "Content-Type": "application/json"}
 	# url = f"https://publications.europa.eu/resource/authority/eurovoc/{label_id}"
 	url = f"http://eurovoc.europa.eu/{eurovoc_code}"

@@ -3,7 +3,6 @@ if __name__ == "__main__":
 	import json
 	import src_utils
 	import data_src
-	
 	# from data_src import DataSrc
 	
 	eurlex_src = data_src.DataSrc(sparql_query_name="financial_domain_eurlex_sparql_query_non_distinct_grouping")
