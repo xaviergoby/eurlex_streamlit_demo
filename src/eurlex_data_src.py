@@ -5,7 +5,7 @@ import settings
 # from eurlex_regtech_webapp_demo import settings
 
 
-class DataSrc:
+class EURLexDataSrc:
 	
 	def __init__(self, sparql_query_name=None, base_sparql_query_name="eurlex_base_financial_domain_sparql_query"):
 		self.sparql_query_name = sparql_query_name

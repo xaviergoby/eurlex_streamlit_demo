@@ -1,11 +1,11 @@
 # EurLex Financial Domain Publications Querying & Retrieval "*Streamlit'ined*"
 
+> This project/endeavour is strictly <b>NOT</b> associated with the Publications Office of the European Union, EUR-Lex nor any other entity whatsoever. This is strictly the work of (Alexander) Xavier Goby.
 
 
 [//]: # (<p  float="left">)
 <p style="text-align:center">
 <a href="https://eurlexappdemo-4rnhk0qylob.streamlit.app/"><img src="https://static.streamlit.io/badges/streamlit_badge_black_white.svg" width="175" height="60"/></a>
-<a href="https://eur-lex.europa.eu/"><img src="docs\assets\images\EUR_Lex_logo_large_rounded_2.png" width="160" height="50"/></a>
 <a href="https://op.europa.eu/"><img src="docs/assets/images/OP_EU.png" width="140" height="45"/></a>
 </p>
 

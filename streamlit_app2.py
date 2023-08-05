@@ -1,11 +1,27 @@
 import json
 import time
-import data_src
 from utils import get_sparql_query_results
 import streamlit as st
+import data_src
+from eurlex_sparql_query_constructor import EURLexSPARQLQueryBuilder
+from eurlex_sparql_query_constructorV3 import EURLexSPARQLQueryConstructor
 
 
-eurlex_src = data_src.DataSrc(sparql_query_name="financial_domain_eurlex_sparql_query_non_distinct_grouping")
+max_res_limit = 50
+
+# eurlex_src = data_src.DataSrc(sparql_query_name="financial_domain_eurlex_sparql_query_non_distinct_grouping")
+# query = eurlex_src.query_str
+# eurlex_src = EURLexSPARQLQueryBuilder(distinct=True)
+# query = eurlex_src.create_query()
+distinct_opt = True
+res_limit_opt = 10
+order_by_opt = "desc"
+earliest_pub_date_opt = "2014-01-01"
+subjects_opt = None
+eurlex_src = EURLexSPARQLQueryConstructor(distinct=distinct_opt, limit=res_limit_opt)
+eurlex_src.build_query(distinct=True, limit=res_limit_opt, order_by=order_by_opt,
+                       earliest_pub_date=earliest_pub_date_opt, subjects=subjects_opt,
+                       indent_depth=0)
 query = eurlex_src.query_str
 
 updated_query = ''
@@ -67,7 +83,7 @@ h4 {
 st.markdown("""
   <style>
 p, ol, ul, dl {
-    margin: 4px 1px 0.20rem;
+    margin: 4px 1px 0.20rem;a
     padding: 0px;
     font-size: 1rem;
     font-weight: 400;
@@ -77,7 +93,7 @@ p, ol, ul, dl {
 
 sidebar_info_gen_desc_header = st.sidebar.markdown("<h2 style='color: white;'>General Description</h2>", unsafe_allow_html=True)
 
-with open("eurovoc_codes_and_labels.json", 'r') as eurovoc_mapping_json:
+with open("mappings/eurovoc_codes_and_labels.json", 'r') as eurovoc_mapping_json:
 	eurovocs_mapping = eurovoc_mapping_json.read()
 
 publications_of_the_eu_office_url = "https://op.europa.eu/en/home"
@@ -90,7 +106,9 @@ sidebar_info_gen_desc = st.sidebar.markdown("<p>This applications purpose is to 
                                             f"knowledge available via the <a href='{eur_lex_url}' id='my-link'>EUR-Lex</a> platform.</p>",
                                             unsafe_allow_html=True)
 
-# parse file
+# parse EuroVoc descriptors/labels & IDs JSON mapping file
+fin_domain_subjects_eurovoc_ids = list(json.loads(eurovocs_mapping).keys())
+
 fin_domain_subjects_eurovoc_labels = list(json.loads(eurovocs_mapping).values())
 fin_domain_subjects_eurovoc_labels_formatted = "\n"
 for eurovoc_label in fin_domain_subjects_eurovoc_labels:
@@ -101,18 +119,23 @@ fin_domain_subjects_eurovoc_labels_formatted = f"""
 
 st.write("##")
 
-sidebar_info_eurlex_subjects_toggle = st.sidebar.markdown(
-	f"<details> <summary><font size='+4'>Financial Subjects (EuroVoc's):</summary>{fin_domain_subjects_eurovoc_labels_formatted}</details>",
-	unsafe_allow_html=True)
+sidebar_info_eurlex_subjects_toggle = st.sidebar.markdown(f"<details> "
+                                                          f"<summary><font size='+4'>Financial Subjects (EuroVoc's):</summary>"
+                                                          f"{fin_domain_subjects_eurovoc_labels_formatted}</details>",
+                                                          unsafe_allow_html=True)
 sidebar_info_usage_guide_header = st.sidebar.markdown("<h2 style='color: white;'>Usage Guide</h2>", unsafe_allow_html=True)
-
-max_res_limit = 50
 
 # sidebar_info_usage_guide = st.sidebar.markdown("<p>Intuitive enough I hope</p>", unsafe_allow_html=True)
 sidebar_info_usage_guide = st.sidebar.markdown("<li>Select the earliest publication date to retrieve results for.</li>"
                                                f"<li>Select the number of results to be retrieved (min of 1 & max of {max_res_limit}.</li>"
                                                f"<li>Select the date-wise ordering of retrieved publication results.</li>"
                                                f"<li>Select the language of publications to be retrieved.</li>", unsafe_allow_html=True)
+
+st.sidebar.divider()
+
+warning_note = st.sidebar.markdown("This project/endeavour is strictly <b>NOT</b> associated with the "
+                                   "Publications Office of the European Union, EUR-Lex nor any other entity "
+                                   "whatsoever. This is strictly the work of (Alexander) Xavier Goby.")
 
 st.markdown("<h1 style='text-align: center; color: white;'>EurLex Financial Domain Publications Retrieval Demo</h1>", unsafe_allow_html=True)
 
@@ -123,25 +146,31 @@ input_row2_col1, input_row2_col2 = st.columns(2)
 
 init_pub_date = input_row1_col1.date_input("Earliest date of publications (YYYY-MM-DD)").strftime('%Y-%m-%d')
 
-updated_query = query.replace('FILTER( ?date > "2014-01-01"^^xsd:date)', f'FILTER( ?date > "{init_pub_date}"^^xsd:date)')
+# updated_query = query.replace('FILTER( ?date > "2014-01-01"^^xsd:date)', f'FILTER( ?date > "{init_pub_date}"^^xsd:date)')
+# updated_query = eurlex_src.create_query(earliest_publication_date=init_pub_date)
 
-while updated_query == '':
-	time.sleep(1)
+# while updated_query == '':
+# 	time.sleep(1)
+#
+# res_limit = None
 
-res_limit = None
+res_limit = input_row1_col2.slider(f"Results to return (1-{max_res_limit})", 1, max_res_limit, 10)
 
-res_limit = input_row1_col2.slider(f"Results to return (1-{max_res_limit})", 1, max_res_limit)
+# updated_query = updated_query.replace('LIMIT 10', f'LIMIT {res_limit}')
+# updated_query = eurlex_src.create_query(earliest_publication_date=init_pub_date, res_limit=res_limit)
 
-updated_query = updated_query.replace('LIMIT 10', f'LIMIT {res_limit}')
-
-while res_limit is None:
-	time.sleep(1)
+# while res_limit is None:
+# 	time.sleep(1)
 
 ordering = input_row2_col1.selectbox("Publications ordering", options=["Descending", "Ascending"])
 if ordering == "Ascending" and "DESC(?date)" in updated_query:
-	updated_query = updated_query.replace("DESC(?date)", "ASC(?date)")
+	order_by_opt = "asc"
+# updated_query = updated_query.replace("DESC(?date)", "ASC(?date)")
+# updated_query = eurlex_src.create_query(earliest_publication_date=init_pub_date, order_by="asc", res_limit=res_limit)
 elif ordering == "Descending" and "ASC(?date)" in updated_query:
-	updated_query = updated_query.replace("ASC(?date)", "DESC(?date)")
+	order_by_opt = "desc"
+# updated_query = updated_query.replace("ASC(?date)", "DESC(?date)")
+# updated_query = eurlex_src.create_query(earliest_publication_date=init_pub_date, order_by="desc", res_limit=res_limit)
 
 language_opt = input_row2_col2.selectbox("Publications language", options=["EN", "NL"])
 
@@ -150,7 +179,21 @@ st.divider()
 st.markdown("<h2 style='color: white;'>SPARQL Query Results</h2>", unsafe_allow_html=True)
 st.write("##")
 
-results = get_sparql_query_results(updated_query)
+# distinct_opt2 = True
+# res_limit_opt2 = 50
+# order_by_opt2 = "desc"
+# earliest_pub_date_opt2 = "2018-01-01"
+# subjects_opt2 = ["investment promotion"]
+subjects_opt2 = None
+eurlex_src.update_query_settings(distinct=distinct_opt, limit=res_limit, order_by=order_by_opt,
+                                 earliest_pub_date=init_pub_date, subjects=subjects_opt2, indent_depth=0)
+updated_query = eurlex_src.query_str
+
+if updated_query == '':
+	results = get_sparql_query_results(query)
+else:
+	results = get_sparql_query_results(updated_query)
+
 for i, res in enumerate(results["results"]["bindings"], start=1):
 	doc_date = res["date"]["value"]
 	doc_title = res["workTitles"]["value"]
@@ -183,3 +226,4 @@ for i, res in enumerate(results["results"]["bindings"], start=1):
 		{subjects_list_formatted}
 		""", unsafe_allow_html=True)
 	st.write("---")
+
