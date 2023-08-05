@@ -57,7 +57,9 @@ def print_data_to_file(outfile_name: str, data: list) -> None:
 			output_file_obj.write(file_name)
 
 
-def get_sparql_query_results(sparql_query_str, sparql_endpoint_url: str = settings.EURLEX_SPARQL_ENDPOINT_URL):
+# def get_sparql_query_results(sparql_query_str, sparql_endpoint_url: str = settings.EURLEX_SPARQL_ENDPOINT_URL):
+def get_sparql_query_results(sparql_query_str,
+                             sparql_endpoint_url: str = "https://publications.europa.eu/webapi/rdf/sparql"):
 	"""
 	Send the given sparql_query to the EU Sparql endpoint
 	and retrieve and return the results in JSON format.
